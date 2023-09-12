@@ -43,7 +43,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 # Push the new image ID in the Amazon ECS task definition
     - name: Push the new image ID in the Amazon ECS task definition
-      id: ecs-nodejs-demo-task
+      id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
@@ -54,7 +54,7 @@ jobs:
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.ecs-nodejs-demo-task.outputs.task-definition }}
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: nodejs-demo-service
         cluster: docker-nodejs-demo
         wait-for-service-stability: true
