@@ -44,7 +44,7 @@ jobs:
 # Push the new image ID in the Amazon ECS task definition
     - name: Push the new image ID in the Amazon ECS task definition
       id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      uses: aws-actions/amazon-ecs-render-task-definition@v1.1.2
       with:
         task-definition: task-definition.json
         container-name: nodejs-demo-container
